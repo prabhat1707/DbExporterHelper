@@ -1,0 +1,35 @@
+{
+  "first_table": [
+    {
+      "id": 101,
+      "name": "USER1",
+      "type": "CUSTOMER"
+    },
+    {
+      "id": 102,
+      "name": "USER2",
+      "type": "EMPLYOEE"
+    },
+    {
+      "id": 103,
+      "name": "USER3",
+      "type": "CUSTOMER"
+    },
+    {
+      "id": 104,
+      "name": "USER4",
+      "type": "lCUSTOMER"
+    }
+
+  ],
+  "second_table": [
+    {
+      "id": 1,
+      "name": "CUSTOMER"
+    },
+    {
+      "id": 2,
+      "name": "EMPLYOEE"
+    }
+  ]
+}
