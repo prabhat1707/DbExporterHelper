@@ -49,6 +49,11 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
         return tables
     }
 
+    /**
+     * @param tableName = export table name
+     * @param csvFileName = filemame that you want to show after export
+     *
+     */
     fun exportSingleTable(tableName: String, csvFileName: String) {
         val file = File(exportDir, csvFileName)
         try {
@@ -63,6 +68,10 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
         }
     }
 
+    /**
+     * @param csvFileName = filemame that you want to show after export
+     *
+     */
     public fun exportAllTables(csvFileName: String) {
         val file = File(exportDir, csvFileName)
         try {
@@ -80,6 +89,7 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
             exporterListener.fail("Export $csvFileName fail", sqlEx.message.toString())
         }
     }
+
 
     private fun exportTable(tableName: String, csvWrite: CSVWriter) {
         var curCSV: Cursor? = null
@@ -103,6 +113,10 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
         curCSV.close()
     }
 
+    /**
+     * @param appDBPath = db path of you app. see sample for detail
+     *
+     */
     fun exportDb(appDBPath: String) {
         try {
             val externalStorageDir = File(Environment.getExternalStorageDirectory(), directoryName)
@@ -110,7 +124,7 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
                 externalStorageDir.mkdirs()
             }
             val internalStorageDir = Environment.getDataDirectory()
-//            val appDBPath = "/data/com.tanzanite.blubox/databases/"    //getDatabasePath(DATABASE_NAME).absolutePath;
+//            val appDBPath = "/data/com.android.dbexporterlibrary/databases/"    //getDatabasePath(DATABASE_NAME).absolutePath;
 
             //.db file
             val currentDB = File(internalStorageDir, appDBPath + dbName)
@@ -144,11 +158,16 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
         }
     }
 
+    /**
+     * @param appDBPath = db path of you app. see sample for detail
+     *
+     */
+
     fun importDBFile(appDBPath: String) {
         try {
             val externalStorageDirPath = Environment.getExternalStorageDirectory().absolutePath + "/" + directoryName
             val internalStorageDir = Environment.getDataDirectory()
-//            val appDBPath = "/data/com.tanzanite.blubox/databases/"
+//            val appDBPath = "/data/com.android.dbexporterlibrary/databases/"
             val appDBDirectory = File(internalStorageDir, appDBPath)
 
             if (!appDBDirectory.exists())
@@ -185,6 +204,11 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
 
 
     }
+
+    /**
+     * @param dirName = directory name where tou want to check db exist or not
+     *
+     */
 
     fun isBackupExist(dirName: String): Boolean {
         val externalStorageDirPath = Environment.getExternalStorageDirectory().absolutePath + "/" + dirName
