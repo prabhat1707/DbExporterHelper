@@ -100,11 +100,7 @@ class ExportDbUtil(context: Context, db: String, directoryName: String, private 
         while (curCSV.moveToNext()) {
             //Which column you want to exprort
             for (i in 0 until curCSV.columnCount) {
-                if (curCSV.getType(i) == Cursor.FIELD_TYPE_INTEGER) {
-                    arrStr[i] = curCSV.getInt(i).toString()
-                } else if (curCSV.getType(i) == Cursor.FIELD_TYPE_STRING) {
-                    arrStr[i] = (curCSV.getString(i))
-                }
+                    arrStr[i] = curCSV.getString(i) ?: ""
             }
             csvWrite.writeNext(arrStr)
 
